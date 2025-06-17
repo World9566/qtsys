@@ -35,6 +35,7 @@ private slots:
     void updateFrequencyChart();
     void on_listWidget_itemSelectionChanged();
     void on_refreshButton_clicked();
+    void filterProcessList(const QString &text);
 private:
     Ui::MainWindow *ui;
     Tracer *m_tracer;

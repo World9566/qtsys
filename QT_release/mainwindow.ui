@@ -15,7 +15,10 @@
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QGridLayout" name="gridLayout">
-    <item row="2" column="1" colspan="3">
+    <item row="3" column="4">
+     <widget class="QChartView" name="frequencyChartView"/>
+    </item>
+    <item row="3" column="1" colspan="3">
      <widget class="QTableWidget" name="syscallTable">
       <column>
        <property name="text">
@@ -44,15 +47,15 @@
       </column>
      </widget>
     </item>
-    <item row="1" column="2">
-     <widget class="QPushButton" name="refreshButton">
+    <item row="0" column="0">
+     <widget class="QLabel" name="label">
       <property name="text">
-       <string>refresh pid</string>
+       <string>search  for pid (by id or process name)</string>
       </property>
      </widget>
     </item>
-    <item row="1" column="0" rowspan="3">
-     <widget class="QListWidget" name="listWidget"/>
+    <item row="1" column="0">
+     <widget class="QLineEdit" name="lineEdit"/>
     </item>
     <item row="1" column="3" colspan="2">
      <widget class="QPushButton" name="startButton">
@@ -61,14 +64,32 @@
       </property>
      </widget>
     </item>
-    <item row="1" column="1">
-     <widget class="QLineEdit" name="pidInput"/>
-    </item>
-    <item row="3" column="1" colspan="4">
+    <item row="4" column="1" colspan="4">
      <widget class="QGraphicsView" name="timelineView"/>
     </item>
-    <item row="2" column="4">
-     <widget class="QChartView" name="frequencyChartView"/>
+    <item row="1" column="1">
+     <widget class="QLineEdit" name="pidInput">
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+    </item>
+    <item row="3" column="0" rowspan="2">
+     <widget class="QListWidget" name="listWidget"/>
+    </item>
+    <item row="0" column="1">
+     <widget class="QPushButton" name="refreshButton">
+      <property name="text">
+       <string>refresh pid</string>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="2">
+     <widget class="QLabel" name="label_2">
+      <property name="text">
+       <string>input pid</string>
+      </property>
+     </widget>
     </item>
    </layout>
   </widget>

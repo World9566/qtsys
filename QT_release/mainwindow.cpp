@@ -105,6 +105,8 @@ MainWindow::MainWindow(QWidget *parent)
 
     //刷新进程
     populateProcessList();
+
+    connect(ui->lineEdit, &QLineEdit::textChanged, this, &MainWindow::filterProcessList);
 }
 
 MainWindow::~MainWindow()
@@ -369,4 +371,31 @@ void MainWindow::populateProcessList()
 void MainWindow::on_refreshButton_clicked()
 {
     populateProcessList();
+}
+
+void MainWindow::filterProcessList(const QString &text)
+{
+    ui->listWidget->clear();
+
+    QString keyword = text.trimmed();
+
+    if (m_allProcesses.isEmpty()) {
+        return;
+    }
+
+    int matchCount = 0;
+    for (const ProcessInfo &info : m_allProcesses) {
+        if (info.name.contains(keyword, Qt::CaseInsensitive) ||
+            QString::number(info.pid).contains(keyword)) {
+            QString displayText = QString("%1 (PID: %2)").arg(info.name).arg(info.pid);
+            QListWidgetItem *item = new QListWidgetItem(displayText, ui->listWidget);
+            item->setData(Qt::UserRole, QVariant::fromValue(info.pid));
+            matchCount++;
+        }
+    }
+
+    if (matchCount == 0) {
+        QListWidgetItem *item = new QListWidgetItem("未找到匹配的进程。", ui->listWidget);
+        item->setFlags(item->flags() & ~Qt::ItemIsSelectable);
+    }
 }
